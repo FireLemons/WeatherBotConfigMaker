@@ -16,22 +16,6 @@ body{
     background-size: cover;
 }
 
-nav{
-    background-color: unset;
-}
-
-nav ul a:hover {
-    background-color: #1a237e;
-}
-
-nav .brand-logo{
-    padding:  0 .5em;
-}
-
-.nav-wrapper.indigo.darken-4{
-    background-color: #1a237e88 !important;
-}
-
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
