@@ -4,15 +4,14 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
     <title>Config Maker</title>
-      <link rel="stylesheet" href="materialize/css/materialize.min.css">
-      <noscript>
-        <link rel="stylesheet" href="css/nojs.css">
-      </noscript>
+      {{> shared-styles}}
       <script src="../js/vue.min.js"></script>
   </head>
   <body>
+    {{> nav}}
     <div id="main">
     </div>
-    <script src="materialize/js/materialize.min.js"></script>
+    {{> about-modal}}
+    {{> shared-scripts}}
   </body>
 </html>
