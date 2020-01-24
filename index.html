@@ -10,6 +10,7 @@
       <link rel="stylesheet" href="../css/nojs.css">
     </noscript>
     <link rel="stylesheet" href="../css/configMaker.css">
+    <link rel="stylesheet" href="../abbreviationAutocomplete/abbreviationAutocomplete.css">
     <script src="../js/vue.min.js"></script>
   </head>
   <body>
@@ -89,8 +90,7 @@
             <input placeholder="city name" type="text" class="indigo darken-3 white-text" v-model="config.weather.openWeatherMap.location['name']">
           </div>
           <div class="input-field">
-            <input type="text" id="country-code-selector" class="autocomplete">
-            <label for="country-code-selector">Autocomplete</label>
+            <abbreviation-autocomplete :data="ui.countryCodeAutocompleteData" :limit="10" :min-input-length="2"></abbreviation-autocomplete>
           </div>
         </div>
         <div id="coord">
@@ -115,6 +115,7 @@
     </div> 
     <script src="../materialize/js/materialize.min.js"></script>
     <script src="../js/theme.js"></script>
+    <script src="../abbreviationAutocomplete/abbreviation-autocomplete.js"></script>
     <script src="../js/configMaker.js"></script>
   </body>
 </html>
