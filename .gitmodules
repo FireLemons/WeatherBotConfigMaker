@@ -1,0 +1,3 @@
+[submodule "Abbreviation-Autocomplete"]
+	path = abbreviationAutocomplete
+	url = https://github.com/FireLemons/Abbreviation-Autocomplete
