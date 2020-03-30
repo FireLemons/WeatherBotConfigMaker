@@ -49,6 +49,6 @@ input[type=number] {
 }
 
 #main {
-  height: calc(100% - 64px);
+  height: 100%;
   overflow-y: scroll;
 }
