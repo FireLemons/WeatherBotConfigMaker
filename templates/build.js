@@ -2,7 +2,6 @@ const fs = require('fs').promises
 const Mustache = require('mustache')
 
 let indexTemplate,
-
     sharedScriptsPartial,
     sharedStylesPartial
 
@@ -10,8 +9,8 @@ let indexTemplate,
 function onIndexFilesLoaded(){
   if(indexTemplate && sharedScriptsPartial && sharedStylesPartial){
     fs.writeFile('./index.html', Mustache.render(indexTemplate, {}, {
-      'shared-styles': sharedStylesPartial,
-      'shared-scripts': sharedScriptsPartial
+      'sharedStyles': sharedStylesPartial,
+      'sharedScripts': sharedScriptsPartial
     })).then(() => {
       console.log('generated index.html(config maker index)')
     }).catch((err) => {
