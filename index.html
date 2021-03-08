@@ -24,49 +24,58 @@
         <h5 class="white-text">Twitter</h5>
         <div class="input-field">
           <input placeholder="consumer key" type="text" class="indigo darken-3 white-text" v-model="config.twitter.consumer_key">
-        </div>
-        <div class="input-field">
           <input placeholder="consumer secret" type="text" class="indigo darken-3 white-text" v-model="config.twitter.consumer_secret">
-        </div>
-        <div class="input-field">
           <input placeholder="access token key" type="text" class="indigo darken-3 white-text" v-model="config.twitter.access_token_key">
-        </div>
-        <div class="input-field">
           <input placeholder="access token secret" type="text" class="indigo darken-3 white-text" v-model="config.twitter.access_token_secret">
         </div>
-
         <h5 class="white-text">OpenWeatherMap</h5>
+          <div class="input-field">
+            <input placeholder="api key" type="text" class="indigo darken-3 white-text" v-model="config.weather.openWeatherMap['key']">
+          </div>
+        <h6 class="white-text">Location</h6>
         <ul class="tabs indigo darken-3">
-          <li class="tab"><a href="#city-id" class="white-text" @click="ui.weather.openWeatherMap.locationType = 'id'">City ID</a></li>
-          <li class="tab"><a href="#city-name" class="white-text" @click="ui.weather.openWeatherMap.locationType = 'name'">City Name</a></li>
-          <li class="tab"><a href="#coord" class="white-text" @click="ui.weather.openWeatherMap.locationType = 'coord'">Coordinates</a></li>
-          <li class="tab"><a href="#zip-code" class="white-text" @click="ui.weather.openWeatherMap.locationType = 'zip'">ZIP Code</a></li>
+          <li class="tab"><a href="#city-id" class="white-text" @click="ui.weather.openWeatherMap.locationTypeTab = 'id'">City ID</a></li>
+          <li class="tab"><a href="#city-name" class="white-text" @click="ui.weather.openWeatherMap.locationTypeTab = 'name'">City Name</a></li>
+          <li class="tab"><a href="#coord" class="white-text" @click="ui.weather.openWeatherMap.locationTypeTab = 'coord'">Coordinates</a></li>
+          <li class="tab"><a href="#zip-code" class="white-text" @click="ui.weather.openWeatherMap.locationTypeTab = 'zip'">ZIP Code</a></li>
         </ul>
         <div id="city-id">
           <div class="input-field">
-            <input placeholder="city ID" type="number" class="indigo darken-3 white-text" v-model.number="config.weather.openWeatherMap.location['id']">
+            <input placeholder="city ID" type="number" min="0" class="indigo darken-3 white-text" v-model.number="config.weather.openWeatherMap.location['id']">
+            <p class="indigo darken-3">City codes can be found by searching the city <a href="https://openweathermap.org/find">here</a> and copying the id from the url</p>
           </div>
         </div>
         <div id="city-name">
           <div class="input-field">
             <input placeholder="city name" type="text" class="indigo darken-3 white-text" v-model="config.weather.openWeatherMap.location['name']">
-          </div>
-          <div class="input-field">
-            <abbreviation-autocomplete :data="ui.countryCodeAutocompleteData" :limit="10" :min-input-length="2" placeholder="country code"></abbreviation-autocomplete>
+            <abbreviation-autocomplete :data="ui.countryCodeAutocompleteData" :limit="10" :min-input-length="2" placeholder="country code" @select="setCountryCode"></abbreviation-autocomplete>
           </div>
         </div>
         <div id="coord">
+          <div class="input-field">
+            <input placeholder="latitude" type="number" min="-90" max="90" class="indigo darken-3 white-text" v-model="config.weather.openWeatherMap.location['lat']">
+            <input placeholder="longitude" type="number" min="-180" max="180" class="indigo darken-3 white-text" v-model="config.weather.openWeatherMap.location['long']">
+          </div>
         </div>
         <div id="zip-code">
+          <div class="input-field">
+            <input placeholder="zip code" type="number" min="0" max="999999" class="indigo darken-3 white-text" v-model="config.weather.openWeatherMap.location['zip']">
+            <abbreviation-autocomplete :data="ui.countryCodeAutocompleteData" :limit="10" :min-input-length="2" placeholder="country code" @select="setCountryCode"></abbreviation-autocomplete>
+          </div>
         </div>
 
         <h4 class="white-text">Config JSON</h4>
-        <div class="input-field">
-          <textarea id="configJSON" class="code materialize-textarea darken-3 indigo white-text" v-model="ui.configJSON.configText"></textarea>
+        <div id="configJSON" class="input-field">
+          <a class="btn indigo darken-4 clear" @click="copyConfigToClipboard">
+            {{ ui.copyText }} <i class="inline-icon material-icons">content_paste</i>
+          </a>
+          <textarea readonly class="code materialize-textarea darken-3 indigo white-text" v-model="ui.configJSON.configText">
+          </textarea>
         </div>
       </div>
     </div>
     <script src="materialize/js/materialize.min.js"></script>
+    <script src="js/theme.js"></script>
     <script src="abbreviationAutocomplete/abbreviation-autocomplete.js"></script>
     <script src="js/configMaker.js"></script>
   </body>
